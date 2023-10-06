@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="phone_number" placeholder="Phone"><br/>
+        <input type="text" name="email" placeholder="email"><br/>
+        <button type="submit" name="pay_btn">Pay now</button>
+    </form>
+</body>
+</html>
