@@ -120,7 +120,7 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-.env
+# .env
 
 pesapal_env/
 db.sqlite3 
