@@ -17,7 +17,6 @@ class PesaPalGateway:
         self.consumer_secret = env("CONSUMER_SECRET")
         self.access_token_url = env("ACCESS_TOKEN_URL")
         self.payment_url = env("PAYMENT_URL")
-        self.notification_id = env("NOTIFICATION_ID")
         self.register_ipn_url = env("REGISTER_IPN_URL")
 
 
@@ -34,6 +33,7 @@ class PesaPalGateway:
 
         try:
             res = requests.post(self.access_token_url, headers=headers, json=payload)
+            print(res.json())
 
         except Exception as err:
             logging.error("Error {}".format(err))
@@ -44,7 +44,7 @@ class PesaPalGateway:
     
     def get_notification_id(self):
         token = self.getAuthorizationToken()
-        
+
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",

@@ -16,10 +16,11 @@ def pay(request):
         phonenumber = request.POST["phone_number"]
         email = request.POST["email"]
         amount = 100.00
-        currency = "KE"
+        currency = "KES"
         callback_url = "https://e398-154-159-252-84.ngrok-free.app/callback"
 
         res = gateway.make_payment(phonenumber, email, amount, currency, callback_url)
+        print(res)
 
     return render(request, 'payments.html')
 
