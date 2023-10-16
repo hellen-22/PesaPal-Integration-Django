@@ -1,7 +1,7 @@
 import uuid
 import requests
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 
 from .utils import PesaPalGateway
@@ -19,9 +19,15 @@ def pay(request):
         currency = "KES"
         callback_url = "https://e398-154-159-252-84.ngrok-free.app/callback"
 
-        res = gateway.make_payment(phonenumber, email, amount, currency, callback_url)
-        print(res)
+        try:
+            res = gateway.make_payment(phonenumber, email, amount, currency, callback_url)
 
+            redirect_url = res['redirect_url']
+            return redirect(redirect_url)
+        
+        except:
+            return HttpResponse("An error occured")
+        
     return render(request, 'payments.html')
 
 def paymentIPN(request):
