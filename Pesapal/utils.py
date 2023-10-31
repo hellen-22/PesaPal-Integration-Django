@@ -33,7 +33,6 @@ class PesaPalGateway:
 
         try:
             res = requests.post(self.access_token_url, headers=headers, json=payload)
-            print(res.json())
 
         except Exception as err:
             logging.error("Error {}".format(err))
@@ -52,13 +51,12 @@ class PesaPalGateway:
         }
 
         payload = {
-            "url": "https://e398-154-159-252-84.ngrok-free.app/payment-ipn",
+            "url": "", #Your IPN URL
             "ipn_notification_type": "GET"
         }
 
         try:
             res = requests.post(self.register_ipn_url, headers=headers, json=payload)
-            print(res.json())
 
             notification_id =  res.json()["ipn_id"]
 
